@@ -19,7 +19,10 @@ class ChemicalSearch:
         return result
 
     def open_pages(self):
-        driver = webdriver.Firefox(executable_path=self.path)
+        try:
+            driver = webdriver.Firefox(executable_path=self.path)
+        except Exception:
+            return "check the path to the driver!"
         for group in self.chain:
             try:
                 url = f"https://chemequations.com/en/advanced-search/?reactant1={group[0]}&product1={group[1]}&submit="
